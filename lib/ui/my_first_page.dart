@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_2/product.dart';
-import 'package:flutter_2/product_cart.dart';
+import 'package:flutter_2/domain/models/product.dart';
+import 'package:flutter_2/ui/widgets/product_cart.dart';
 
 class MyFirstPage extends StatelessWidget {
   MyFirstPage({super.key, required this.tittle});

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_2/user.dart';
+import 'package:flutter_2/ui/widgets/button_app.dart';
+import 'package:flutter_2/ui/text_field_app.dart';
+import 'package:flutter_2/domain/models/user.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -20,34 +22,29 @@ var formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Регистрация')),
-      body: Form(
+      backgroundColor: Colors.blueGrey,
+      appBar: AppBar(title: Text('Регистрация'), backgroundColor: Colors.grey,),
+      body: Container(
+        alignment: Alignment.center,
+        padding: EdgeInsets.all(12),
+        child:  Form(
         key: formKey,
         child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-        TextFormField(
-          validator: (value){
-            return value!.isEmpty?'Поле не может быть пустым':null;
-          },
-          controller:  nameController, decoration: InputDecoration(
-          hintText: 'Имя'
-        ),),
-        TextField(controller: loginController, decoration: InputDecoration(
-          hintText: 'Логин'
-        ),),
-        TextField(controller:  passwordController, obscureText: true, decoration: InputDecoration(
-          hintText: 'Пароль'
-        ),),
-        TextField(controller:  confirmPasswordController, obscureText: true, decoration: InputDecoration(
-          hintText: 'Подтверждение'
-        ),),
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-          onPressed: register, child: Text('Зарегестрироваться', style: TextStyle(color: Colors.green),))
+          TextFieldApp(controller:  nameController, hintText: 'Имя'),
+          SizedBox(height: 8,),
+          TextFieldApp(controller: loginController, hintText: 'Логин'),
+          SizedBox(height: 8,),
+          TextFieldApp(controller: passwordController, hintText: 'Пароль' ,isObscure: true,),
+          SizedBox(height: 8,),
+          TextFieldApp(controller: confirmPasswordController,hintText: 'Подтверждение пароля', isObscure: true,),
+      SizedBox(height: 8,),
+        ButtonApp(onPressed: register, text: 'Зарегестрироваться',)
       ],),
-      ));
+      )));
   }
+
 
 
 void register(){

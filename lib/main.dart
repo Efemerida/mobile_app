@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_2/auth_screen.dart';
-import 'package:flutter_2/my_first_page.dart';
+import 'package:flutter_2/ui/screens/auth_screen.dart';
+import 'package:flutter_2/ui/screens/my_first_page.dart';
 
 void main() {
   runApp(const MyApp());

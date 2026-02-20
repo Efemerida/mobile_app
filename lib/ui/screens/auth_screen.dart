@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_2/my_first_page.dart';
-import 'package:flutter_2/register_screen.dart';
-import 'package:flutter_2/user.dart';
+import 'package:flutter_2/ui/widgets/button_app.dart';
+import 'package:flutter_2/ui/screens/my_first_page.dart';
+import 'package:flutter_2/ui/screens/register_screen.dart';
+import 'package:flutter_2/ui/text_field_app.dart';
+import 'package:flutter_2/domain/models/user.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -26,6 +28,7 @@ class _AuthScreenState extends State<AuthScreen> {
     }));
 
     return Scaffold(
+      backgroundColor: Colors.blueGrey,
       body: Padding(padding: EdgeInsetsGeometry.symmetric(horizontal: 16),child:  Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -34,15 +37,15 @@ class _AuthScreenState extends State<AuthScreen> {
             fontWeight: FontWeight.w600
           ),),
           SizedBox(height: 8,),
-          TextFormField(controller: controllerLogin,),
+          TextFieldApp(controller: controllerLogin, hintText: 'Логин'),
           SizedBox(height: 8,),
-          TextFormField(obscureText: true, controller: controllerPassword,),
+          TextFieldApp(controller: controllerPassword, hintText: 'Пароль', isObscure: true,),
           SizedBox(height: 8,),
-          ElevatedButton(onPressed: onLogin, child: Text('Войти'),),
+          ButtonApp(text: 'Войти', onPressed: onLogin,),
           SizedBox(height:16,),
           GestureDetector(
             onTap: onRegister,
-            child: Text('зарегестрироваться'),)
+            child: Text('Зарегестрироваться',style: TextStyle(fontSize: 16, color: Colors.white),),)
         ],
       ),
     ));
