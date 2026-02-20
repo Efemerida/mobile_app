@@ -15,14 +15,22 @@ var nameController = TextEditingController();
 var passwordController = TextEditingController();
 var confirmPasswordController = TextEditingController();
 
+var formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Регистрация')),
-      body: Column(
+      body: Form(
+        key: formKey,
+        child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-        TextField(controller:  nameController, decoration: InputDecoration(
+        TextFormField(
+          validator: (value){
+            return value!.isEmpty?'Поле не может быть пустым':null;
+          },
+          controller:  nameController, decoration: InputDecoration(
           hintText: 'Имя'
         ),),
         TextField(controller: loginController, decoration: InputDecoration(
@@ -38,11 +46,12 @@ var confirmPasswordController = TextEditingController();
           style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
           onPressed: register, child: Text('Зарегестрироваться', style: TextStyle(color: Colors.green),))
       ],),
-      );
+      ));
   }
 
 
 void register(){
+  formKey.currentState!.validate();
   if(nameController.text.isEmpty || loginController.text.isEmpty || passwordController.text.isEmpty){
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Поля неверно введены')));
   }

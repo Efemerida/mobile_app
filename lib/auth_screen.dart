@@ -23,7 +23,6 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
 
     controllerLogin.addListener(() => setState(() {
-      setState(() {});
     }));
 
     return Scaffold(
