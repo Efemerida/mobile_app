@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_2/ui/widgets/button_app.dart';
-import 'package:flutter_2/ui/text_field_app.dart';
+import 'package:flutter_2/ui/widgets/text_field_app.dart';
 import 'package:flutter_2/domain/models/user.dart';
 
 class RegisterScreen extends StatefulWidget {

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_2/ui/widgets/button_app.dart';
 import 'package:flutter_2/ui/screens/my_first_page.dart';
 import 'package:flutter_2/ui/screens/register_screen.dart';
-import 'package:flutter_2/ui/text_field_app.dart';
+import 'package:flutter_2/ui/widgets/text_field_app.dart';
 import 'package:flutter_2/domain/models/user.dart';
 
 class AuthScreen extends StatefulWidget {
