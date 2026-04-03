@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_2/ui/screens/auth_screen.dart';
-import 'package:flutter_2/ui/screens/my_first_page.dart';
+import 'package:flutter_2/ui/screens/products_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ProviderScope(child: const MyApp()));
 }
-
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -16,16 +15,22 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.blueGrey,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.teal,
+          titleTextStyle: TextStyle(fontSize: 24, color: Colors.white),
+          foregroundColor: Colors.white,
+        ),
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+        textTheme: TextTheme(
+          titleSmall: TextStyle(fontSize: 14, color: Colors.white),
+          titleMedium: TextStyle(fontSize: 16, color: Colors.white),
+        ),
       ),
-      home:  AuthScreen(),
+      home: AuthScreen(),
     );
   }
 }
-
-
-
-
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -43,8 +48,6 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
-
-
 
   @override
   Widget build(BuildContext context) {
