@@ -6,6 +6,7 @@ class ProductNotifier extends Notifier<List<Product>>{
   
   late final ProductRepository _productRepository;
   
+  
   @override
   List<Product> build() {
     _productRepository = ProductRepository();

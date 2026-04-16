@@ -57,8 +57,8 @@ class ProductsScreen extends ConsumerWidget {
             context,
             MaterialPageRoute(builder: (context) => AddProductScreen()));
         },
-        child: Icon(Icons.add, color: Colors.white),
         backgroundColor: Colors.teal,
+        child: Icon(Icons.add, color: Colors.white),
       ),
     );
   }

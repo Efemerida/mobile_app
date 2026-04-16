@@ -23,9 +23,10 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   Widget build(BuildContext context) {
 
     var user = ref.watch(authProvider);
+  
 
-
-    if (user != null) {
+    return user.when(data: ((user) {
+if (user != null) {
 
       WidgetsBinding.instance.addPostFrameCallback((_) {
         
@@ -72,6 +73,10 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
         ),
       ),
     );
+    }), error: ((err, st) => Center(child: Text(err.toString()),)), loading: () => Center(child:  CircularProgressIndicator()));
+
+
+    
   }
 
   void onLogin() {
