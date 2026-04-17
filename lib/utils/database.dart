@@ -10,6 +10,7 @@ part 'database.g.dart';
 
 @DriftDatabase(tables: [
   UserDto,
+  ProductData,
 ])
 class Database extends _$Database {
     Database(super.e);
@@ -31,7 +32,8 @@ class Database extends _$Database {
               name: '1',
               login: '1',
               password: '1',
-            ),          ]);
+            ),
+          ]);
         });
       },
     );
@@ -49,6 +51,19 @@ abstract class UserDto extends Table {
   TextColumn get password => text()();
 }
 
+
+@DataClassName('ProductDto')
+abstract class ProductData extends Table {
+  IntColumn get id => integer().autoIncrement()();
+
+  TextColumn get name => text()();
+
+  BlobColumn? get imageData => blob().nullable()();
+
+  BoolColumn get isActive => boolean().withDefault(Constant(false))();
+
+  TextColumn get qrData => text()();
+}
 
 
 final db = Database(NativeDatabase.memory());

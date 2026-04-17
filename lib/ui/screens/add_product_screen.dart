@@ -2,19 +2,21 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_2/domain/models/product.dart';
+import 'package:flutter_2/providers/product_notifier.dart';
 import 'package:flutter_2/ui/screens/products_screen.dart';
 import 'package:flutter_2/ui/widgets/button_app.dart';
 import 'package:flutter_2/ui/widgets/text_field_app.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
-class AddProductScreen extends StatefulWidget {
+class AddProductScreen extends ConsumerStatefulWidget {
   const AddProductScreen({super.key});
 
   @override
-  State<AddProductScreen> createState() => _AddProductScreenState();
+  ConsumerState<AddProductScreen> createState() => _AddProductScreenState();
 }
 
-class _AddProductScreenState extends State<AddProductScreen> {
+class _AddProductScreenState extends ConsumerState<AddProductScreen> {
   var nameController = TextEditingController();
   final _imagePicker = ImagePicker();
   File? _fileImage;
@@ -49,7 +51,12 @@ class _AddProductScreenState extends State<AddProductScreen> {
               ButtonApp.light(
                 text: 'Добавить',
                 onPressed: () {
-                
+                  var product = Product(
+                    name: nameController.text,
+                    imageData: _fileImage != null ? _fileImage!.readAsBytesSync() : null,
+                     qrData: '',
+                  );
+                  ref.read(productProvider.notifier).addProduct(product);
                   Navigator.pop(context);
                 },
               ),

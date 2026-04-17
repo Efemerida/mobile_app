@@ -12,9 +12,10 @@ class ProductsScreen extends ConsumerWidget {
   const ProductsScreen({super.key, required this.tittle});
   final String tittle;
 
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var products = ref.read(productProvider);
+    var products = ref.watch(productProvider);
 
     return Scaffold(
       appBar: AppBar(

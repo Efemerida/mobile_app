@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_2/domain/models/product.dart';
@@ -20,7 +21,9 @@ class ProductDetailsScreen extends StatelessWidget {
             SizedBox(height: 16),
             ClipRRect(
               borderRadius: BorderRadius.circular(16),
-              child: product.pathImage!=null?Image.file(File(product.pathImage!)):Image.asset('assets/img/image.png'),
+              child: product.imageData != null
+                  ? Image.memory(product.imageData!)
+                  : Image.asset('assets/img/image.png'),
             ),
             SizedBox(height: 16),
             Row(
@@ -42,24 +45,26 @@ class ProductDetailsScreen extends StatelessWidget {
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
-                    color: product.isActive?Colors.red:Colors.lightBlue
+                    color: product.isActive ? Colors.red : Colors.lightBlue,
                   ),
-                  child: Text(product.isActive ? "Занято" : "Свободно", style: Theme.of(context).textTheme.titleMedium),
+                  child: Text(product.isActive ? "Занято" : "Свободно",
+                      style: Theme.of(context).textTheme.titleMedium),
                 ),
               ],
             ),
-            SizedBox(height: 16,),
+            SizedBox(height: 16),
             SizedBox(
               height: 250,
-              child:  PrettyQrView(
-              qrImage: QrImage(
-                QrCode(40, QrErrorCorrectLevel.H)
-                  ..addData("${product.name} ${product.isActive}"),
+              child: PrettyQrView(
+                qrImage: QrImage(
+                  QrCode(40, QrErrorCorrectLevel.H)
+                    ..addData("${product.name} ${product.isActive}"),
+                ),
+                decoration: const PrettyQrDecoration(),
               ),
-              decoration: const PrettyQrDecoration(),
-            )),
-            SizedBox(height: 12,),
-            Text('Мой qr', style: Theme.of(context).textTheme.titleMedium,)
+            ),
+            SizedBox(height: 12),
+            Text('Мой qr', style: Theme.of(context).textTheme.titleMedium),
           ],
         ),
       ),
